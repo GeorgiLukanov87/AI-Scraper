@@ -3,8 +3,9 @@
 .env.*.local
 
 # Log files
-resultg.txt*
+result.txt*
 app.log*
+result*
 
 venv
 .env
