@@ -1,0 +1,13 @@
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+resultg.txt*
+app.log*
+
+venv
+.env
+__pycache__/
+logs
+.idea
