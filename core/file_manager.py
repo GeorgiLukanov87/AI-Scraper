@@ -20,7 +20,7 @@ def increment_records_count(filename: str) -> int:
     return records_count
 
 
-def save_results_to_file(title: str, summary: str, url: str, filename="result.txt") -> None:
+def save_results_to_file(title: str, summary: str, url: str, filename: str = "result.txt") -> None:
     try:
         # Get current timestamp
         timestamp = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
