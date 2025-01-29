@@ -18,7 +18,7 @@ config_url_list = [
     "https://georgilukanov87.pythonanywhere.com/",
 ]
 
-config_url = config_url_list[1]
+config_url = config_url_list
 
 # Default settings
 RESULT_FILENAME = "result.txt"
