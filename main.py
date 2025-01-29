@@ -8,10 +8,8 @@ from core.process_article import process_article
 
 if __name__ == "__main__":
     configure_logger()
-    logging.info("Program started.")
 
     url = config_url[0]
-
     '''    List of urls:
       0:  "https://en.wikipedia.org/wiki/Talk:Image",
       1:  "https://www.bbc.com/news/world-us-canada-59703761",
@@ -21,4 +19,3 @@ if __name__ == "__main__":
 
     process_article(url, OPENAI_API_KEY, RESULT_FILENAME)
 
-    logging.info("Program finished.\n")
