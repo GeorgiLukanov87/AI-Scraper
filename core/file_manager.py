@@ -5,22 +5,26 @@ import logging
 from datetime import datetime
 
 
+def increment_records_count(filename: str) -> int:
+    # Read the current count from the file if it exists
+    records_count = 0
+    if os.path.exists(filename):
+        with open(filename, "r", encoding="utf-8") as file:
+            lines = file.readlines()
+            for line in lines:
+                if line.startswith("Record"):
+                    records_count += 1
+
+    # Increment the count for the new record
+    records_count += 1
+    return records_count
+
+
 def save_results_to_file(title: str, summary: str, url: str, filename="result.txt") -> None:
     try:
-        # Read the current count from the file if it exists
-        records_count = 0
-        if os.path.exists(filename):
-            with open(filename, "r", encoding="utf-8") as file:
-                lines = file.readlines()
-                for line in lines:
-                    if line.startswith("Record"):
-                        records_count += 1
-
-        # Increment the count for the new record
-        records_count += 1
-
         # Get current timestamp
         timestamp = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+        records_count = increment_records_count(filename="result.txt")
 
         # Append the new record to the file
         with open(filename, "a", encoding="utf-8") as file:
