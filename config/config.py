@@ -17,7 +17,7 @@ config_url_list = [
     "https://www.olx.bg/"
 ]
 
-config_url = config_url_list[0]
+config_url = config_url_list[1]
 
 # Default settings
 RESULT_FILENAME = "result.txt"

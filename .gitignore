@@ -6,6 +6,7 @@
 result.txt*
 app.log*
 result*
+result.txt
 
 venv
 .env
