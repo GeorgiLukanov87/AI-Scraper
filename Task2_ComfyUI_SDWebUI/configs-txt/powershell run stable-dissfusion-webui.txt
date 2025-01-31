@@ -1,0 +1,1 @@
+python launch.py --skip-torch-cuda-test --use-cpu all --no-half --lowvram --opt-split-attention

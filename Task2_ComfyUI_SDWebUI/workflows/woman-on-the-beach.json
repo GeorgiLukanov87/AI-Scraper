@@ -1,0 +1,617 @@
+{
+  "last_node_id": 46,
+  "last_link_id": 74,
+  "nodes": [
+    {
+      "id": 43,
+      "type": "LatentUpscale",
+      "pos": [
+        1219.81396484375,
+        310.96051025390625
+      ],
+      "size": [
+        315,
+        130
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 66
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            69
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LatentUpscale"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        1152,
+        1152,
+        "disabled"
+      ]
+    },
+    {
+      "id": 31,
+      "type": "SaveImage",
+      "pos": [
+        867.0005493164062,
+        509.82562255859375
+      ],
+      "size": [
+        362.19000244140625,
+        323.239990234375
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 44
+        }
+      ],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 45,
+      "type": "SaveImage",
+      "pos": [
+        1251.2672119140625,
+        508.1776428222656
+      ],
+      "size": [
+        397.2799987792969,
+        333.8800048828125
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 68
+        }
+      ],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "CLIPTextEncode",
+      "pos": [
+        425.0999755859375,
+        172.40989685058594
+      ],
+      "size": [
+        425.27801513671875,
+        180.6060791015625
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            6,
+            73
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "text, watermark, deformed, ugly"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "KSampler",
+      "pos": [
+        882.9649658203125,
+        186
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 4
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 6
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            64,
+            66
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        951733935133723,
+        "randomize",
+        20,
+        7.5,
+        "dpmpp_2m",
+        "karras",
+        1
+      ]
+    },
+    {
+      "id": 46,
+      "type": "KSampler",
+      "pos": [
+        1560.7203369140625,
+        180.55599975585938
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 74
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 72
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 73
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 69
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            70
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        388367385332420,
+        "randomize",
+        20,
+        7.5,
+        "dpmpp_2m",
+        "karras",
+        0.5
+      ]
+    },
+    {
+      "id": 6,
+      "type": "CLIPTextEncode",
+      "pos": [
+        427.22100830078125,
+        -46.92500305175781
+      ],
+      "size": [
+        422.84503173828125,
+        164.31304931640625
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            4,
+            72
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "Ultra-realistic photo of a beautiful woman wearing stylish black sunglasses and a flowing red summer dress, standing on a sunny beach. The warm golden light enhances the scene, casting a soft glow. Behind her, tall green palm trees sway gently, and the sand stretches toward the horizon. The ocean breeze slightly lifts the hem of her dress, adding a sense of movement."
+      ]
+    },
+    {
+      "id": 30,
+      "type": "VAEDecode",
+      "pos": [
+        906.4024658203125,
+        75.8868408203125
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 64
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 48
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            44
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 44,
+      "type": "VAEDecode",
+      "pos": [
+        1266.014404296875,
+        190.07025146484375
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 70
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 71
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            68
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 4,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        492.3500671386719,
+        420.55010986328125
+      ],
+      "size": [
+        315,
+        98
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1,
+            74
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            3,
+            5
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            48,
+            71
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "sd_xl_refiner_1.0.safetensors"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "EmptyLatentImage",
+      "pos": [
+        494.2983093261719,
+        587.2216796875
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            2
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        768,
+        768,
+        1
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      4,
+      0,
+      3,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      5,
+      0,
+      3,
+      3,
+      "LATENT"
+    ],
+    [
+      3,
+      4,
+      1,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      4,
+      6,
+      0,
+      3,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      5,
+      4,
+      1,
+      7,
+      0,
+      "CLIP"
+    ],
+    [
+      6,
+      7,
+      0,
+      3,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      44,
+      30,
+      0,
+      31,
+      0,
+      "IMAGE"
+    ],
+    [
+      48,
+      4,
+      2,
+      30,
+      1,
+      "VAE"
+    ],
+    [
+      64,
+      3,
+      0,
+      30,
+      0,
+      "LATENT"
+    ],
+    [
+      66,
+      3,
+      0,
+      43,
+      0,
+      "LATENT"
+    ],
+    [
+      68,
+      44,
+      0,
+      45,
+      0,
+      "IMAGE"
+    ],
+    [
+      69,
+      43,
+      0,
+      46,
+      3,
+      "LATENT"
+    ],
+    [
+      70,
+      46,
+      0,
+      44,
+      0,
+      "LATENT"
+    ],
+    [
+      71,
+      4,
+      2,
+      44,
+      1,
+      "VAE"
+    ],
+    [
+      72,
+      6,
+      0,
+      46,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      73,
+      7,
+      0,
+      46,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      74,
+      4,
+      0,
+      46,
+      0,
+      "MODEL"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.9090909090909091,
+      "offset": [
+        -39.861838409476434,
+        97.25015764417618
+      ]
+    },
+    "node_versions": {
+      "comfy-core": "0.3.13"
+    }
+  },
+  "version": 0.4
+}

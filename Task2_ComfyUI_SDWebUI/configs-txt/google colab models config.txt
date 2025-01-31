@@ -1,0 +1,72 @@
+
+!git clone https://github.com/blessedcoolant/invoke_meshgraphormer.git
+!pip install trimesh rtree yacs
+!mkdir -p ./models/controlnet/
+!wget https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.3.pth -P ./models/controlnet/
+
+#------------------------------------------------------------------------
+!git clone https://github.com/xinntao/Real-ESRGAN.git
+%cd Real-ESRGAN
+!pip install -r requirements.txt
+!python setup.py develop
+%cd ..
+
+#------------------------------------------------------------------------
+
+# Clone the MeshGraphormer repository into the custom_nodes directory of ComfyUI
+!git clone https://github.com/microsoft/MeshGraphormer.git /content/ComfyUI/custom_nodes/MeshGraphormer
+
+# Modify requirements.txt to use a compatible scipy version (e.g., scipy>=1.9.0)
+!sed -i 's/scipy==1.4.1/scipy>=1.9.0/' /content/ComfyUI/custom_nodes/MeshGraphormer/requirements.txt
+
+# Install required dependencies for MeshGraphormer
+!pip install -r /content/ComfyUI/custom_nodes/MeshGraphormer/requirements.txt
+
+# Clone the ComfyUI ControlNet AUX repository into the custom_nodes directory of ComfyUI
+!git clone https://github.com/Fannovel16/comfyui_controlnet_aux.git /content/ComfyUI/custom_nodes/comfyui_controlnet_aux
+
+# Install required dependencies for ComfyUI ControlNet AUX
+!pip install -r /content/ComfyUI/custom_nodes/comfyui_controlnet_aux/requirements.txt
+
+# Return to the workspace directory
+%cd $WORKSPACE
+
+# Restart ComfyUI to apply changes
+!pkill -f "ComfyUI.py"
+!python /content/ComfyUI/ComfyUI.py
+
+#------------------------------------------------------------------------
+!mkdir -p ./models/upscale_models/
+
+!wget -c https://huggingface.co/hr16/ControlNet-HandRefiner-pruned/resolve/main/control_sd15_inpaint_depth_hand_fp16.safetensors?download=true -P ./models/controlnet/
+!wget -c https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task -P ./models/controlnet/
+!wget -c https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors -P ./models/checkpoints/
+!wget -c https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16 -P ./models/checkpoints/
+!wget -c https://huggingface.co/comfyanonymous/ControlNet-v1-1_fp16_safetensors/resolve/main/control_v11p_sd15_openpose_fp16.safetensors -P ./models/controlnet/
+!wget -c https://huggingface.co/comfyanonymous/ControlNet-v1-1_fp16_safetensors/resolve/main/control_v11f1p_sd15_depth_fp16.safetensors -P ./models/controlnet/
+!wget -c https://huggingface.co/comfyanonymous/ControlNet-v1-1_fp16_safetensors/resolve/main/control_v11p_sd15_normalbae_fp16.safetensors -P ./models/controlnet/
+!wget -c https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.safetensors -P ./models/vae/
+!wget -c https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.3.pth -P ./models/controlnet/
+!wget -c https://huggingface.co/sczhou/CodeFormer/resolve/main/codeformer.pth -P ./models/controlnet/
+!wget -c https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth -P ./models/upscale_models/
+
+#------------------------------------------------------------------------
+Most SDXL checkpoints work best with an image size of 1024 x 1024.
+Image sizes of 768 x 768 and 512 x5 12 are supported, but the results may not be as good.
+
+Good resolution:
+832x1216
+
+Good base prompt-simple:
+realistic photograph, full body, beautiful woman, smilling, blond, soft lighting, in park, green trees, warm colors
+4k, highly detailed, high-quality, masterpiece
+
+negative prompt:
+deformed, low quality, bad anatomy, blurry
+
+
+
+
+
+
+
