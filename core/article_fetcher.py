@@ -17,7 +17,7 @@ def fetch_article(url):
         content = ' '.join([p.get_text(strip=True) for p in paragraphs])
 
         split_content = "\n".join([p.get_text(strip=True) for p in paragraphs])
-        print(f'Scrapped data:\n{split_content}\n')
+        # print(f'Scrapped data:\n{split_content}\n')
 
         logging.info(f"Successfully fetched article: {title}")
         return {"title": title, "content": content}
