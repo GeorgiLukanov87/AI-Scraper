@@ -10,7 +10,7 @@ def process_article(url: str, api_key: str, result_filename: str) -> None:
     article = fetch_article(url)
 
     if article:
-        result = generate_summary_and_title(article["content"], api_key, max_words_count=50)
+        result = generate_summary_and_title(article["content"], api_key, max_words_count=100)
 
         if result:
             print_results(article["title"], result["title"], result["summary"])
